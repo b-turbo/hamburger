@@ -14,15 +14,52 @@
 <script>
 
     while(true){
-      var a =  prompt('请选择您想要的服务:\n1.输入q,退出服务功能\n2.输入\"总和\",计算数字相加的和\n3.输入\"日期\"即可查看当日日期\n4.讲笑话')
+      var a =  prompt('请选择您想要的服务:\n输出<关键词>或<编号>搜索相应功能;输入q,退出服务功能\n1.输入"1"或"总和",计算数字相加的和\n2.输入"2"或"时间"即可查看当日日期\n3.输入"3"或"讲笑话"即可查看笑话');
         if(a==='q'){
             alert('你忍心退出吗');
             break;
         }
         switch(a){
+            case "1":
             case "总和":
             var num=prompt("请输入需要求和的数字,每个数字之间用逗号分隔开");
             var arr=num.split(',');
+            var sum=0;
+            for(var i=0;i<arr.length;i++){
+                sum=sum+parseFloat(arr[i]);
+            }
+            alert('这组数字相加的和为:'+ sum);
+            break;
+
+            case '2':
+            case '时间':
+            var time=new Date();
+            var year= time.getFullYear();
+            var month=time.getMonth() +1;
+            var date=time.getDate();
+            var hour=time.getHours();
+            var minutes=time.getMinutes();
+            var seconds=time.getSeconds();
+
+            year= year<10 ? '0'+year:year;
+            month= month<10 ? '0'+month:month;
+            date= date<10 ? '0'+date:date;
+            hour= hour<10 ? '0'+hour:hour;
+            minutes= minutes<10 ? '0'+minutes:minutes;
+            seconds= seconds<10 ? '0'+seconds:seconds;
+            var all=year+'-'+month+'-'+date+' '+hour+':'+minutes+':'+seconds;
+            alert('当前时间为:'+all);
+            break;
+
+            case '3':
+            case '讲笑话':
+            var joke=['笑话1','笑话2','笑话3','笑话4','笑话5','笑话6'];
+            var r=Math.floor(Math.random()*joke.length);
+            alert(joke[r]);
+            break;
+            default:
+            alert('请按照提示输入正确的关键词或编号');
+            break;
         }
         
     }
